@@ -1,13 +1,19 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Serve (app) where
 
 import Network.Wai
 import Network.HTTP.Types
-import qualified Data.Text.IO as Tio
+import Data.List (intercalate)
 
 app :: Application
-app _ respond = do
-  Tio.putStrLn "IO - handled"
-  respond $ responseLBS
+app req res = do
+  putStrLn $ intercalate " " [
+      "(<<)",
+      show (requestMethod req),
+      show (remoteHost req)
+    ]
+  res $ responseLBS
     status200
     [("Content-Type", "text/plain")]
     "Hello, World!"
