@@ -1,2 +1,2 @@
 # serve
-A simple web server written in scala 
+A simple web server written in haskell
