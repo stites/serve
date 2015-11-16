@@ -8,21 +8,23 @@ import Options.Applicative
 import CliOptions (options, ServeOptions(..))
 import CliVersion (runCommandVersion)
 
+serve :: ServeOptions -> IO ()
+serve opts = do
+  putStrLn $ "http://localhost:" ++ show port
+  putStrLn $ pathArg opts
+  run port app
+    where port = optPort opts
+
 main :: IO ()
 main = do
   opts <- execParser parser
   if optVersion opts
   then runCommandVersion
-  else putStrLn "arst"
---     p <- optPort opts
---     putStrLn $ "http://localhost" ++ p
---     run p app
+  else serve opts
   where
     parser = info (helper <*> options)
-       ( fullDesc
-      <> progDesc descTxt
-      <> header   helpTxt )
+       ( fullDesc <> header descTxt )
 
-descTxt, helpTxt :: String
+descTxt :: String
 descTxt = "A simple, warp-based static content server"
-helpTxt =  "testing aristnarisetnrasiet"
+

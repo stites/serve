@@ -19,7 +19,7 @@ library
                      , text
                      , wai
                      , http-types
-  extensions:          OverloadedStrings
+  default-extensions:  OverloadedStrings
   default-language:    Haskell2010
 
 executable serve
@@ -30,6 +30,7 @@ executable serve
                      , serve
                      , warp
                      , optparse-applicative
+  other-modules:       CliOptions, CliVersion, Paths_serve
   default-language:    Haskell2010
 
 test-suite serve-test
