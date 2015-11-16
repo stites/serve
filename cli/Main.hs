@@ -4,10 +4,9 @@ import Serve (app)
 import Network.Wai.Handler.Warp (run)
 
 import Options.Applicative
-import Data.Version (showVersion)
-import Paths_serve (version)
 
 import CliOptions (options, ServeOptions(..))
+import CliVersion (runCommandVersion)
 
 main :: IO ()
 main = do
@@ -23,9 +22,6 @@ main = do
        ( fullDesc
       <> progDesc descTxt
       <> header   helpTxt )
-
-runCommandVersion :: IO ()
-runCommandVersion = putStrLn $ "serve v" ++ showVersion version
 
 descTxt, helpTxt :: String
 descTxt = "A simple, warp-based static content server"
