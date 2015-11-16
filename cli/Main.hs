@@ -1,6 +1,10 @@
 module Main where
 
-import Lib
+import Serve (app)
+import Network.Wai.Handler.Warp (run)
 
 main :: IO ()
-main = someFunc
+main = do
+  putStrLn $ "http://localhost:$port"
+  run 8080 app
+
