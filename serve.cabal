@@ -29,6 +29,7 @@ executable serve
   build-depends:       base
                      , serve
                      , warp
+                     , optparse-applicative
   default-language:    Haskell2010
 
 test-suite serve-test
